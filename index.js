@@ -18,11 +18,12 @@ try {
 	console.log('*************** STARTING ******************')
 	const build_number = pull_request.number
 	const jsonStr = JSON.stringify({ build_number })
-	const resolvedPath = new URL(filePath, import.meta.url)
-	console.log(`writing "${jsonStr}" to: ${resolvedPath}`)
-	writeFileSync(resolvedPath, jsonStr)
-	const file = readFileSync(resolvedPath)
-	console.log('found file!', file)
+	// const resolvedPath = new URL(filePath, import.meta.url)
+	// console.log(`writing "${jsonStr}" to: ${resolvedPath}`)
+	writeFileSync(filePath, jsonStr)
+	// writeFileSync(resolvedPath, jsonStr)
+	const file = readFileSync(filePath)
+	console.log('found file!', file.toString())
 	console.log('***************** DONE ********************')
 } catch (e) {
 	console.error(e)
