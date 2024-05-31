@@ -1,0 +1,10 @@
+name: 'Build Number Action'
+description: 'GitHub action for capturing a build number with PR merge'
+inputs:
+  file-path:
+    description: 'Relative path and name of the output file (must have .json ext)'
+    required: false
+    default: 'build_number.json'
+runs:
+  using: 'node20'
+  main: 'index.js'
