@@ -1,6 +1,6 @@
 import core from '@actions/core'
 import github from '@actions/github'
-import { readFileSync, writeFileSync } from 'fs'
+import { writeFileSync } from 'fs'
 
 const filePath = core.getInput('file-path')
 
@@ -18,12 +18,8 @@ try {
 	console.log('*************** STARTING ******************')
 	const build_number = pull_request.number
 	const jsonStr = JSON.stringify({ build_number })
-	// const resolvedPath = new URL(filePath, import.meta.url)
-	// console.log(`writing "${jsonStr}" to: ${resolvedPath}`)
 	writeFileSync(filePath, jsonStr)
-	// writeFileSync(resolvedPath, jsonStr)
-	const file = readFileSync(filePath)
-	console.log('found file!', file.toString())
+	console.log(`wrote "${jsonStr}" to path: ${filePath}`)
 	console.log('***************** DONE ********************')
 } catch (e) {
 	console.error(e)
