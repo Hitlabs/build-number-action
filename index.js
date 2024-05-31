@@ -6,7 +6,7 @@ const filePath = core.getInput('file-path')
 
 try {
 	console.log('*************** PRECHECK ******************')
-	if (!branches.length) {
+	if (!filePath) {
 		const params = JSON.stringify({ filePath })
 		throw new Error(`Invalid parameters provided: ${params}`)
 	}
@@ -24,16 +24,7 @@ try {
 	console.log('***************** DONE ********************')
 } catch (e) {
 	console.error(e)
-	console.log(
-		'Variables',
-		JSON.stringify({
-			chatId,
-			maxCommits,
-			messagePrefix,
-			prontoApiToken,
-			githubApiToken,
-		})
-	)
+	console.log('Variables', JSON.stringify({ filePath }))
 	console.log(
 		'The event payload:',
 		JSON.stringify(github.context.payload, null, 2)
